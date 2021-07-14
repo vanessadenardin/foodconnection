@@ -1,0 +1,2 @@
+class DietaryCategoriesController < ApplicationController
+end
