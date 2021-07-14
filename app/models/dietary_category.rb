@@ -1,0 +1,2 @@
+class DietaryCategory < ApplicationRecord
+end
