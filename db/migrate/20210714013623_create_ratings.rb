@@ -4,8 +4,8 @@ class CreateRatings < ActiveRecord::Migration[6.1]
       t.integer :rating
       t.text :review
       t.datetime :date
-      t.references :user, null: false, foreign_key: true
-      t.references :recipe, null: false, foreign_key: true
+      t.references :user, null: true, foreign_key: true
+      t.references :recipe, null: true, foreign_key: true
 
       t.timestamps
     end
