@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
   validates :recipe_instructions, format: {with: /[a-zA-Z]/}, length: { minimum: 20 }
   validates :cooking_time, numericality: { only_integer: true }
   validates :serves, numericality: { only_integer: true }
-  validates :skill_level, length: { minimum: 5 }
-  validates :cuisine, length: { minimum: 5 }
-  validates :meal_type, length: { minimum: 5 }
+  validates :skill_level, format: {with: /[a-zA-Z]/}, length: { minimum: 5 }
+  validates :cuisine, format: {with: /[a-zA-Z]/}, length: { minimum: 5 }
+  validates :meal_type, format: {with: /[a-zA-Z]/}, length: { minimum: 5 }
 end
