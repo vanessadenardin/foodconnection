@@ -10,37 +10,40 @@ puts 'destroying old records'
 
 User.destroy_all
 
-# puts 'seeding started'
-# puts 'creating user 1'
+puts 'seeding started'
+puts 'creating user 1'
 
 user1 = User.create(username: 'testaccount', email: 'test@test.com', password_digest: '123456')
-puts "Created!"
-# puts 'creating recipes user 1'
-Recipe.create(
-    recipe_name: "test",
-    recipe_instructions: "hello",
-    cooking_time: 2,
-    serves: 2,
-    skill_level: "beginners",
-    cuisine: "Indian",
-    meal_type: "breakfast",
-    user: User.last
-)
 
-puts "Created Recipe!"
-# 3.times do 
-# 	user1.recipes.create(
-# 	recipe_name: ['test recipe', 'testy recipe', 'testytesty recipe'].sample,
-# 	recipe_instructions: ['Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', 
-#         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus magna. Curabitur at venenatis ipsum. Phasellus pulvinar est vel dolor tempor tristique.', 
-#         'Aliquam erat volutpat. Phasellus pharetra posuere sem, eget scelerisque lorem auctor sollicitudin. Mauris lobortis mollis risus ut tempor.'].sample,
-# 	cooking_time: [1,2,3,4].sample,
-# 	serves: [1,2,4,6].sample,
-#     skill_level: ['beginners', 'intermediate', 'advanced', 'chef'].sample,
-# 	cuisine: ['western', 'mexican', 'italian', 'brazilian'].sample,
-# 	meal_type: ['breakfast', 'lunch', 'dinner', 'dessert', 'snack'].sample
-# 	)
-# end
+puts "Created User"
+puts 'Creating recipes user 1'
+
+# Recipe.create(
+#     recipe_name: "test",
+#     recipe_instructions: "hello",
+#     cooking_time: 2,
+#     serves: 2,
+#     skill_level: "beginners",
+#     cuisine: "Indian",
+#     meal_type: "breakfast",
+#     user: User.last
+# )
+
+# puts "Created Recipe!"
+
+3.times do 
+	user1.recipes.create(
+	recipe_name: ['test recipe', 'testy recipe', 'testytesty recipe'].sample,
+	recipe_instructions: ['Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...', 
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus magna. Curabitur at venenatis ipsum. Phasellus pulvinar est vel dolor tempor tristique.', 
+        'Aliquam erat volutpat. Phasellus pharetra posuere sem, eget scelerisque lorem auctor sollicitudin. Mauris lobortis mollis risus ut tempor.'].sample,
+	cooking_time: [1,2,3,4].sample,
+	serves: [1,2,4,6].sample,
+    skill_level: ['beginners', 'intermediate', 'advanced', 'chef'].sample,
+	cuisine: ['western', 'mexican', 'italian', 'brazilian'].sample,
+	meal_type: ['breakfast', 'lunch', 'dinner', 'dessert', 'snack'].sample
+	)
+end
 
 # puts 'creating user 2'
 
