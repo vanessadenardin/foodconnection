@@ -18,6 +18,11 @@ class UsersController < ApplicationController
         end
     end
 
+    # if no error means the token works
+    def token
+        authenticated
+    end
+
     private
 
     def user_params
