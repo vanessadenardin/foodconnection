@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   post '/sign-up', to: 'users#sign_up'
   post '/login', to: 'users#login'
+  # test decode token
+  post '/token', to: 'users#token'
 
 end
