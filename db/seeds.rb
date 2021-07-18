@@ -90,4 +90,22 @@ puts recipe.errors.full_messages unless recipe.valid?
 
 puts "Created Recipes user 2!"
 
+puts 'creating user 3 admin'
+
+user1 = User.create(username: 'testaccount3', email: 'test3@test.com', password: "testadmin", password_confirmation: "testadmin", admin: true)
+
+puts "Created User 3 ADMIN"
+
+puts 'Creating Ratings'
+
+rating = Rating.create(
+    rating: 3,
+    review: "This is a test rating of a recipe",
+    date: Time.now,
+    user: User.last,
+    recipe: Recipe.last
+)
+
+puts 'Ratings Created'
+
 puts 'seeding complete'
