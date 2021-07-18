@@ -46,3 +46,5 @@ gem "jwt", "~> 2.2"
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
 end
+
+gem "rack-cors", "~> 1.1"
