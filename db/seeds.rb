@@ -90,4 +90,10 @@ puts recipe.errors.full_messages unless recipe.valid?
 
 puts "Created Recipes user 2!"
 
+puts 'creating user 3 admin'
+
+user1 = User.create(username: 'testaccount3', email: 'test3@test.com', password: "testadmin", password_confirmation: "testadmin", admin: true)
+
+puts "Created User 3 ADMIN"
+
 puts 'seeding complete'
