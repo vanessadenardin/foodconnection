@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
     end
 
     def show
-        render json: Recipe.all, status: :ok
+        render json: @recipe, include: [:ratings, :user], status: :ok
     end
 
     def create
