@@ -48,3 +48,5 @@ group :development, :test do
 end
 
 gem "rack-cors", "~> 1.1"
+
+gem "aws-sdk-s3", "~> 1.96"

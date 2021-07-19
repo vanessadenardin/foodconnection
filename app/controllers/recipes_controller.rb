@@ -6,10 +6,13 @@ class RecipesController < ApplicationController
     end
 
     def show
-        render json: @recipe, include: [:ratings, :user], status: :ok
+        # can't add the image.url inside the recipe so I have added a new object
+        render json: {recipe: @recipe, image: @recipe.image.url}, include: [:ratings, :user], status: :ok
     end
 
     def create
+        params[:user_id] = authenticated.id
+        puts(params)
         @recipe = Recipe.new(recipe_params)
         if @recipe.save
             render json: @recipe, status: :created
@@ -38,7 +41,7 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.require(:recipe).permit(:recipe_name, :recipe_instructions, :cooking_time, :serves, :skill_level, :user_id, :cuisine, :meal_type)
+        params.permit(:recipe_name, :recipe_instructions, :cooking_time, :serves, :skill_level, :user_id, :cuisine, :meal_type, :image)
     end
 
 
