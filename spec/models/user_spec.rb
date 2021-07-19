@@ -1,37 +1,37 @@
 require "rails_helper"
 
 RSpec.describe User, :type => :model do
-  
-#   before(:all) do
-#     @user11 = create(:user)
-#   end
-  
-#   it "is valid with valid attributes" do
-#     expect(@user11).to be_valid
-#   end
-  
-#   it "has a unique username" do
-#     user2 = build(:user, username: "suztest15")
-#     expect(user2).to_not be_valid
-#   end
-  
-#   it "has a unique email" do
-#     user2 = build(:user, email: "suztest15@email.com")
-#     expect(user2).to_not be_valid
-#   end
-  
-  it "is not valid without a password" do 
-    user2 = build(:user, password: nil)
-    expect(user2).to_not be_valid
+
+  it "has a valid factory" do
+    user = build(:user)
+    expect(user).to be_valid
   end
-  
-  it "is not valid without a username" do 
-    user2 = build(:user, username: nil)
-    expect(user2).to_not be_valid
+
+  context "validations" do
+    before(:each) do
+      @user = build(:user)
+    end
+
+    it "is invalid without a username" do
+      user = build(:user, username: nil)
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid without an email" do
+      user = build(:user, email: nil)
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid without a password" do
+      user = build(:user, password: nil)
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid without a password confirmation" do
+      user = build(:user, password_confirmation: nil)
+      expect(user).to_not be_valid
+    end
+
   end
-  
-  it "is not valid without an email" do
-    user2 = build(:user, email: nil)
-    expect(user2).to_not be_valid
-  end
+
 end
