@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     def sign_up
         @user = User.create(user_params)
         if @user.valid?
-            render json: {token: encode({user_id: @user.id})}, status: :created
+            render json: {username: @user.username, email: @user.email, token: encode({user_id: @user.id})}, status: :created
         else
             render json: @user.errors, status: :unprocessable_entity
         end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation)
+        params.permit(:username, :email, :password, :password_confirmation)
         # params.permit(:username, :email, :password, :password_cofirmation)
     end
 
