@@ -187,7 +187,11 @@ DEPENDENCIES
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
+<<<<<<< HEAD
   rack-cors
+=======
+  rack-cors (~> 1.1)
+>>>>>>> 4afaa1d0fcc9b7fe6f523e2529dd7cbb46f6fdce
   rails (~> 6.1.4)
   rails-controller-testing
   rspec-rails (~> 5.0.0)
