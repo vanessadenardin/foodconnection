@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :dietary_categories, through: :recipe_dietaries
   has_many :ratings, dependent: :destroy
-  # has_one_attached :image
+  has_one_attached :image
   validates :recipe_name, :recipe_instructions, :cooking_time, :serves, :skill_level, :cuisine, :meal_type, :user_id, presence: :true
   validates :recipe_name, format: {with: /[a-zA-Z]/}, length: { minimum: 2 }
   validates :recipe_instructions, format: {with: /[a-zA-Z]/}, length: { minimum: 20 }
