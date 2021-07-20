@@ -11,10 +11,12 @@ class RecipesController < ApplicationController
     end
 
     def create
-        params[:user_id] = authenticated.id
-        puts(params)
-        @recipe = Recipe.new(recipe_params)
-        if @recipe.save
+        # puts(authenticated.recipes)
+        @recipe = authenticated.recipes.new(recipe_params)
+        # params[:recipe_dietaries_attributes] = JSON.parse(params[:recipe_dietaries_attributes])
+        # @recipe = Recipe.new(recipe_params)
+        # @dietary_categories = DietaryCategory.all
+        if @recipe.save!
             render json: @recipe, status: :created
         else
             render json: @recipe.errors, status: :unprocessable_entity
@@ -33,6 +35,11 @@ class RecipesController < ApplicationController
         @recipe.destroy
     end
 
+    # get all dietary categories
+    def dietary
+        render json: DietaryCategory.all, status: :ok
+
+    end
 
     private
 
@@ -41,7 +48,20 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.permit(:recipe_name, :recipe_instructions, :cooking_time, :serves, :skill_level, :user_id, :cuisine, :meal_type, :image)
+        params.require(:recipe).permit(
+            :recipe_name,
+            :recipe_instructions,
+            :cooking_time,
+            :serves,
+            :skill_level,
+            :user_id,
+            :cuisine,
+            :meal_type,
+            :image,
+            recipe_dietaries_attributes: [
+                :id,
+                :dietary_category_id
+            ])
     end
 
 

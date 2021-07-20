@@ -1,9 +1,6 @@
 class DietaryCategory < ApplicationRecord
-    has_many :recipe_dietary
-
-    validates :name, presence: :true
-
-    validates :name, format: {with: /[a-zA-Z]/}, length: { minimum: 2 }
+    validates :name, presence: true
+    validates :name, format: { with: /[a-zA-Z]/}, length: { minimum: 2 }
 end
 
 # create_table "dietary_categories", force: :cascade do |t|
