@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'recipes#index'
   resources :recipes
   resources :ratings
+  resources :users
 
   post '/sign-up', to: 'users#sign_up'
   post '/login', to: 'users#login'
