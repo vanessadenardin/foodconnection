@@ -108,4 +108,46 @@ rating = Rating.create(
 
 puts 'Ratings Created'
 
+gluten = DietaryCategory.create(
+    name: "Gluten Free"
+)
+
+dairy = DietaryCategory.create(
+    name: "Dairy Free"
+)
+
+msg = DietaryCategory.create(
+    name: "Contain MSG"
+)
+
+nuts = DietaryCategory.create(
+    name: "Contain Nuts"
+)
+
+fodmap = DietaryCategory.create(
+    name: "FODMAPs Found"
+)
+
+lactose = DietaryCategory.create(
+    name: "Lactose Free"
+)
+
+vegetarian = DietaryCategory.create(
+    name: "Vegetarian"
+)
+
+vegan = DietaryCategory.create(
+    name: "Vegan"
+)
+
+paleo = DietaryCategory.create(
+    name: "Paleo"
+)
+
+halal = DietaryCategory.create(
+    name: "Halal"
+)
+
+puts 'Dietary_categories Created'
+
 puts 'seeding complete'

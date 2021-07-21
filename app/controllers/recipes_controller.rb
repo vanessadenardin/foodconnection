@@ -6,12 +6,17 @@ class RecipesController < ApplicationController
     end
 
     def show
-        render json: @recipe, include: [:ratings, :user], status: :ok
+        # can't add the image.url inside the recipe so I have added a new object
+        render json: {recipe: @recipe, image: @recipe.image.url}, include: [:ratings, :user], status: :ok
     end
 
     def create
-        @recipe = Recipe.new(recipe_params)
-        if @recipe.save
+        # puts(authenticated.recipes)
+        @recipe = authenticated.recipes.new(recipe_params)
+        # params[:recipe_dietaries_attributes] = JSON.parse(params[:recipe_dietaries_attributes])
+        # @recipe = Recipe.new(recipe_params)
+        # @dietary_categories = DietaryCategory.all
+        if @recipe.save!
             render json: @recipe, status: :created
         else
             render json: @recipe.errors, status: :unprocessable_entity
@@ -30,6 +35,11 @@ class RecipesController < ApplicationController
         @recipe.destroy
     end
 
+    # get all dietary categories
+    def dietary
+        render json: DietaryCategory.all, status: :ok
+
+    end
 
     private
 
@@ -38,7 +48,20 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-        params.require(:recipe).permit(:recipe_name, :recipe_instructions, :cooking_time, :serves, :skill_level, :user_id, :cuisine, :meal_type)
+        params.require(:recipe).permit(
+            :recipe_name,
+            :recipe_instructions,
+            :cooking_time,
+            :serves,
+            :skill_level,
+            :user_id,
+            :cuisine,
+            :meal_type,
+            :image,
+            recipe_dietaries_attributes: [
+                :id,
+                :dietary_category_id
+            ])
     end
 
 
