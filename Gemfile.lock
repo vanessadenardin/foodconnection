@@ -85,6 +85,7 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.10.0)
+    excon (0.85.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -200,6 +201,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
+  excon (~> 0.85.0)
   factory_bot_rails
   jwt (~> 2.2)
   listen (~> 3.3)

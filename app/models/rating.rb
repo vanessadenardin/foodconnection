@@ -4,7 +4,7 @@ class Rating < ApplicationRecord
 
   validates :rating, :review, :date, :user_id, :recipe_id, presence: true
   validates :rating, numericality: { only_integer: true }
-  validates :review, format: {with: /[a-zA-Z]/}, length: { minimum: 20 }
+  validates :review, format: { with: /[a-zA-Z]/ }, length: { minimum: 20 }
   # validates :date, 
 
 end
