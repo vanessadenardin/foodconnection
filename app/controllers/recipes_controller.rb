@@ -7,13 +7,15 @@ class RecipesController < ApplicationController
 
     def show
         # can't add the image.url inside the recipe so I have added a new object
-        render json: { recipe: @recipe, image: @recipe.image.url }, include: [:ratings, :user, :dietary_categories], status: :ok
+        render json: { recipe: @recipe, image: @recipe.image.url }, include: [:ratings, :user, :dietary_categories, :recipe_ingredients], status: :ok
     end
 
     def create
         # clone recipe params to be able to JSON parse the recipe dietaries string
         local_params = recipe_params.clone
+        # local_params[:recipe_dietaries_attributes] = JSON.parse(local_params[:recipe_dietaries_attributes])
         local_params[:recipe_dietaries_attributes] = JSON.parse(local_params[:recipe_dietaries_attributes])
+        local_params[:recipe_ingredients_attributes] = JSON.parse(local_params[:recipe_ingredients_attributes])
 
         @recipe = authenticated.recipes.new(local_params)
         if @recipe.save
@@ -58,7 +60,9 @@ class RecipesController < ApplicationController
             :cuisine,
             :meal_type,
             :image,
-            :recipe_dietaries_attributes)
+            :recipe_dietaries_attributes,
+            :recipe_ingredients_attributes
+        )
     end
 
 

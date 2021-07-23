@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   # test decode token
   post '/token', to: 'users#token'
 
+  get '/ingredients', to: 'ingredients#index'
+
 end
