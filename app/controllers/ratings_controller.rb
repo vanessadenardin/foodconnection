@@ -1,5 +1,6 @@
 class RatingsController < ApplicationController
     before_action :set_rating, only: [:show, :destroy]
+    # before_action :authenticated
 
     def index
         # Wont be using index at all for ratings
@@ -33,14 +34,14 @@ class RatingsController < ApplicationController
     end
 
     def rating_params
-        # params.require(:rating).permit(:rating, :review, :date, :user_id, :recipe_id)
-        params.permit(
-            :rating,
-            :review,
-            :date,
-            :user_id,
-            :recipe_id
-        )
+        params.require(:rating).permit(:rating, :review, :date, :user_id, :recipe_id)
+        # params.permit(
+        #     :rating,
+        #     :review,
+        #     :date,
+        #     :user_id,
+        #     :recipe_id
+        # )
     end
 
 end
