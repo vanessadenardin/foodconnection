@@ -52,6 +52,7 @@ RSpec.describe Recipe, :type => :model do
             expect(recipe).to_not be_valid
         end
 
+
     end
 
 end
