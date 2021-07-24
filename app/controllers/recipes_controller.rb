@@ -7,18 +7,30 @@ class RecipesController < ApplicationController
 
     def show
         # can't add the image.url inside the recipe so I have added a new object
-        render json: { recipe: @recipe, image: @recipe.image.url }, include: [:ratings, :user, :dietary_categories, :recipe_ingredients], status: :ok
+        render json: { recipe: @recipe, image: @recipe.image.url }, include: [:ratings, :dietary_categories, :recipe_dietaries, :recipe_ingredients], status: :ok
     end
 
     def create
         # clone recipe params to be able to JSON parse the recipe dietaries string
         local_params = recipe_params.clone
-        # local_params[:recipe_dietaries_attributes] = JSON.parse(local_params[:recipe_dietaries_attributes])
         local_params[:recipe_dietaries_attributes] = JSON.parse(local_params[:recipe_dietaries_attributes])
         local_params[:recipe_ingredients_attributes] = JSON.parse(local_params[:recipe_ingredients_attributes])
 
-        @recipe = authenticated.recipes.new(local_params)
-        if @recipe.save
+        @recipe = authenticated.recipes.new(local_params.select{|x|Recipe.attribute_names.index(x)})
+        if @recipe.save!
+            for diet in local_params[:recipe_dietaries_attributes] do
+                if diet[:delete]
+                    pp "delete #{diet[:dietary_category_id]}"
+                    dietary = RecipeDietary.find_by_id(diet[:id])
+                    if dietary
+                        dietary.delete
+                    end
+                else
+                    pp "add #{diet[:dietary_category_id]}"
+                    a = RecipeDietary.new({recipe_id: @recipe.id, dietary_category_id: diet[:dietary_category_id]})
+                    a.save!
+                end
+            end
             render json: @recipe, status: :created
         else
             render json: @recipe.errors, status: :unprocessable_entity
@@ -26,7 +38,24 @@ class RecipesController < ApplicationController
     end
 
     def update
-        if @recipe.update(recipe_params)
+        # clone recipe params to be able to JSON parse the recipe dietaries string
+        local_params = recipe_params.clone
+        local_params[:recipe_dietaries_attributes] = JSON.parse(local_params[:recipe_dietaries_attributes])
+        local_params[:recipe_ingredients_attributes] = JSON.parse(local_params[:recipe_ingredients_attributes])
+
+        if @recipe.update(local_params.select{|x|Recipe.attribute_names.index(x)})
+            for diet in local_params[:recipe_dietaries_attributes] do
+                if diet[:delete]
+                    pp "delete #{diet[:dietary_category_id]}"
+                    dietary = RecipeDietary.find_by_id(diet[:id])
+                    if dietary
+                        dietary.delete
+                    end
+                else
+                    a = RecipeDietary.new({recipe_id: @recipe.id, dietary_category_id: diet[:dietary_category_id]})
+                    a.save!
+                end
+            end
             render json: @recipe, status: :ok
         else
             render json: @recipe.errors, status: :unprocessable_entity
