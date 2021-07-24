@@ -1,6 +1,7 @@
 FactoryBot.define do
 
     factory :rating do
+        id { 4 }
         rating { 4 }
         review { "These test tacos were the best meal I've ever cooked and tasked thanks"}
         date { Time.now }
