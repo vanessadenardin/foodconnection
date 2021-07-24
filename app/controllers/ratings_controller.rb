@@ -34,14 +34,14 @@ class RatingsController < ApplicationController
     end
 
     def rating_params
-        params.require(:rating).permit(:rating, :review, :date, :user_id, :recipe_id)
-        # params.permit(
-        #     :rating,
-        #     :review,
-        #     :date,
-        #     :user_id,
-        #     :recipe_id
-        # )
+        # params.require(:rating).permit(:rating, :review, :date, :user_id, :recipe_id)
+        params.permit(
+            :rating,
+            :review,
+            :date,
+            :user_id,
+            :recipe_id
+        )
     end
 
 end
