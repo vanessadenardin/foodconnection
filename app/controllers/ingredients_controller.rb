@@ -12,6 +12,7 @@ class IngredientsController < ApplicationController
   private
 
   def get_ingredients
+    
     ingredients = []
     CSV.foreach(Rails.root.join('top-1k-ingredients.csv')) do |row|
       ingredients.push({
