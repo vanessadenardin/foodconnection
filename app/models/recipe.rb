@@ -19,7 +19,4 @@ class Recipe < ApplicationRecord
   validates :skill_level, format: { with: /[a-zA-Z]/ }, length: { minimum: 5 }
   validates :cuisine, format: { with: /[a-zA-Z]/ }, length: { minimum: 5 }
   validates :meal_type, format: { with: /[a-zA-Z]/ }, length: { minimum: 5 }
-  
-  # accepts_nested_attributes_for :recipe_dietaries
-  accepts_nested_attributes_for :recipe_ingredients
 end
