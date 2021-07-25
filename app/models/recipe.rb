@@ -1,13 +1,21 @@
 class Recipe < ApplicationRecord
+  def username
+    user.username
+  end
+
+  def imageUrl
+    image.url
+  end
+
   belongs_to :user
 
-  has_many :recipe_ingredients
+  has_many :recipe_ingredients, dependent: :destroy
 
-  has_many :recipe_dietaries
+  has_many :recipe_dietaries, dependent: :destroy
   has_many :dietary_categories, through: :recipe_dietaries
 
   has_many :ratings, dependent: :destroy
-  has_one_attached :image
+  has_one_attached :image, dependent: :destroy
   
   validates :recipe_name, :recipe_instructions, :cooking_time, :serves, :skill_level, :cuisine, :meal_type, presence: true
   validates :user_id, presence: true

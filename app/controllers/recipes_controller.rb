@@ -2,12 +2,11 @@ class RecipesController < ApplicationController
     before_action :set_recipe, only: [:update, :destroy, :show]
 
     def index
-        render json: Recipe.all.order(recipe_name: :asc), status: :ok
+        render json: Recipe.all.order(created_at: :desc), methods: [:imageUrl], status: :ok
     end
 
     def show
-        # can't add the image.url inside the recipe so I have added a new object
-        render json: { recipe: @recipe, image: @recipe.image.url }, include: [:ratings, :dietary_categories, :recipe_dietaries, :recipe_ingredients], status: :ok
+        render json: { recipe: @recipe }, methods: [:username, :imageUrl], nclude: [:ratings, :dietary_categories, :recipe_dietaries, :recipe_ingredients], status: :ok
     end
 
     def create
@@ -45,7 +44,13 @@ class RecipesController < ApplicationController
     end
 
     def destroy
-        @recipe.destroy
+        if (@recipe.user.id == authenticated.id || is_admin?)
+            if @recipe.destroy
+                render json: {message: "Recipe deleted."}, status: :ok
+            else
+                render json: @recipe.errors, status: 500
+            end
+        end
     end
 
     # get all dietary categories
