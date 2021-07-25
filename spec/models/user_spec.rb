@@ -32,6 +32,16 @@ RSpec.describe User, :type => :model do
       expect(user).to_not be_valid
     end
 
+    it "is invalid without an @ symbol" do
+      user = build(:user, email: "suzatsuz.com")
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid without a .com on the email address" do
+      user = build(:user, email: "suzsuz")
+      expect(user).to_not be_valid
+    end
+
   end
 
 end

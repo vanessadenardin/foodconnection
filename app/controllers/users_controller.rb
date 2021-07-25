@@ -15,12 +15,10 @@ class UsersController < ApplicationController
         @user.destroy
     end
 
-
-
     def sign_up
         @user = User.create(user_params)
         if @user.valid?
-            render json: {username: @user.username, email: @user.email, token: encode({user_id: @user.id}), admin: @user.admin}, status: :created
+            render json: {username: @user.username, email: @user.email, token: encode({user_id: @user.id}), admin: @user.admin, user_id: @user.id}, status: :created
         else
             render json: @user.errors, status: :unprocessable_entity
         end
@@ -29,7 +27,7 @@ class UsersController < ApplicationController
     def login
         @user = User.find_by_username(params[:username])
         if @user && @user.authenticate(params[:password])
-            render json: {message: "Successful Login", token: encode({user_id: @user.id}), admin: @user.admin}, status: :ok
+            render json: {message: "Successful Login", token: encode({user_id: @user.id}), admin: @user.admin, user_id: @user.id}, status: :ok
         else
             render json: {error: "Invalid Username or Password"}
         end
@@ -50,6 +48,4 @@ class UsersController < ApplicationController
         params.permit(:username, :email, :password, :password_confirmation)
         # params.permit(:username, :email, :password, :password_cofirmation)
     end
-
-
 end

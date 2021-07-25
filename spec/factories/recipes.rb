@@ -17,7 +17,7 @@ FactoryBot.define do
         skill_level { "Beginner"}
         cuisine { "Mexican"}
         meal_type { "Dinner"}
-        user_id { 12 }
+        user_id { 1 }
     end
 
 end
