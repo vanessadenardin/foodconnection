@@ -1,11 +1,8 @@
 class RatingsController < ApplicationController
     before_action :set_rating, only: [:show, :destroy]
-    # before_action :authenticated
 
     def index
         # Wont be using index at all for ratings
-        # render json: Rating.all
-        # render json: Rating.all, status: :ok
         @ratings = Rating.all
         render json: @ratings
     end
@@ -23,8 +20,14 @@ class RatingsController < ApplicationController
         render json: @rating
     end
 
-    def destroy 
-        @rating.destroy
+    def destroy
+        if (@rating.recipe.user.id == authenticated.id || is_admin?)
+            if @rating.destroy
+                render json: {message: "Rating deleted.", status: :ok }
+            else
+                render json: @rating.errors, status: 500
+            end
+        end
     end
 
     private
@@ -34,7 +37,6 @@ class RatingsController < ApplicationController
     end
 
     def rating_params
-        # params.require(:rating).permit(:rating, :review, :date, :user_id, :recipe_id)
         params.permit(
             :rating,
             :review,
@@ -43,5 +45,4 @@ class RatingsController < ApplicationController
             :recipe_id
         )
     end
-
 end

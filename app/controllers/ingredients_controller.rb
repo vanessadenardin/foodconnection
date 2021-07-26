@@ -1,13 +1,10 @@
 require 'csv'
 
 class IngredientsController < ApplicationController
+  
   def index
     render json: get_ingredients, status: :ok
   end 
-# end
-  # def ingredients
-  #   render json: Ingredients.all, status: :ok
-  # end
 
   private
 
@@ -23,5 +20,4 @@ class IngredientsController < ApplicationController
 
     ingredients
   end
-
 end

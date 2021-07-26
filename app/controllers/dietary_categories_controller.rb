@@ -1,2 +1,0 @@
-class DietaryCategoriesController < ApplicationController
-end

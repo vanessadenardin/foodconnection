@@ -19,7 +19,6 @@ class Recipe < ApplicationRecord
   
   validates :recipe_name, :recipe_instructions, :cooking_time, :serves, :skill_level, :cuisine, :meal_type, presence: true
   validates :user_id, presence: true
-
   validates :recipe_name, format: { with: /[a-zA-Z]/ }, length: { minimum: 2 }
   validates :recipe_instructions, format: { with: /[a-zA-Z]/ }, length: { minimum: 20 }
   validates :cooking_time, numericality: { greater_than_or_equal_to: 0.01, only_integer: true }

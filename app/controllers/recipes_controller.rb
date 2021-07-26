@@ -6,12 +6,12 @@ class RecipesController < ApplicationController
     end
 
     def show
-        render json: { recipe: @recipe }, methods: [:username, :imageUrl], nclude: [:ratings, :dietary_categories, :recipe_dietaries, :recipe_ingredients], status: :ok
+        render json: { recipe: @recipe }, methods: [:username, :imageUrl], include: [:ratings, :dietary_categories, :recipe_dietaries, :recipe_ingredients], status: :ok
     end
 
     def create
         # clone recipe params to be able to JSON parse the recipe dietaries string
-        extra_params = recipe_params.clone
+        extra_params = post_params.clone
         extra_params[:recipe_dietaries_attributes] = JSON.parse(extra_params[:recipe_dietaries_attributes])
         extra_params[:recipe_ingredients_attributes] = JSON.parse(extra_params[:recipe_ingredients_attributes])
 
@@ -31,9 +31,6 @@ class RecipesController < ApplicationController
         extra_params[:recipe_dietaries_attributes] = JSON.parse(extra_params[:recipe_dietaries_attributes])
         extra_params[:recipe_ingredients_attributes] = JSON.parse(extra_params[:recipe_ingredients_attributes])
 
-        # select will filter extra_params to remove non-Recipe attributes
-            # extra_params.select{|x|Recipe.attribute_names.index(x)})
-        puts Recipe.attribute_names
         if @recipe.update(recipe_params)
             handleDietaries(extra_params[:recipe_dietaries_attributes])
             handleIngredients(extra_params[:recipe_ingredients_attributes])
@@ -53,10 +50,8 @@ class RecipesController < ApplicationController
         end
     end
 
-    # get all dietary categories
     def dietary
         render json: DietaryCategory.all, status: :ok
-
     end
 
     private
@@ -129,13 +124,11 @@ class RecipesController < ApplicationController
     def handleDietaries(dietaries)
         for diet in dietaries do
             if diet[:delete]
-                # pp "delete #{diet[:dietary_category_id]}"
                 dietary = RecipeDietary.find_by_id(diet[:id])
                 if dietary
                     dietary.delete
                 end
             else
-                # pp "add #{diet[:dietary_category_id]}"
                 newDietary = RecipeDietary.new({recipe_id: @recipe.id, dietary_category_id: diet[:dietary_category_id]})
                 newDietary.save
             end

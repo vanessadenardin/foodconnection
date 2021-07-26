@@ -24,6 +24,6 @@ class ApplicationController < ActionController::API
     end
 
     def is_admin?
-        @user.admin
+        authenticated.admin
     end
 end

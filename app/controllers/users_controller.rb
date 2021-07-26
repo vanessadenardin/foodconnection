@@ -12,7 +12,22 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        @user.destroy
+        if is_admin?
+            update_user = User.find(params[:id])
+            if update_user.update({disabled: true})
+                render json: {message: "User deleted.", status: 200 }
+            end
+
+        end
+    end
+
+    def enable
+        if is_admin?
+            update_user = User.find(params[:id])
+            if update_user.update({disabled: false})
+                render json: {message: "User enabled.", status: 200 }
+            end
+        end
     end
 
     def sign_up
@@ -34,7 +49,7 @@ class UsersController < ApplicationController
         
     def login
         @user = User.find_by_username(params[:username])
-        if @user && @user.authenticate(params[:password])
+        if @user && !@user.disabled && @user.authenticate(params[:password])
             render json: {
                 username: @user.username, 
                 email: @user.email, 
@@ -43,9 +58,10 @@ class UsersController < ApplicationController
                 id: @user.id, 
                 created_at: @user.created_at,
                 message: "Successful Login", 
-            }, status: :ok
+                status: :ok
+            }
         else
-            render json: {error: "Invalid Username or Password"}
+            render json: {error: "Invalid Username or Password", status: 200}
         end
     end
 
@@ -57,11 +73,10 @@ class UsersController < ApplicationController
     private
 
     def set_user
-        @user = User.find(params[:id])
+        @user = User.find(authenticated.id)
     end
 
     def user_params
         params.permit(:username, :email, :password, :password_confirmation)
-        # params.permit(:username, :email, :password, :password_cofirmation)
     end
 end

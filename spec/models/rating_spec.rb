@@ -9,12 +9,12 @@ RSpec.describe Rating, :type => :model do
 
     context "validations" do
         before(:each) do
-          @rating = build(:rating)
+            @rating = build(:rating)
         end
     
         it "is invalid without a rating score" do
-          rating = build(:rating, rating: nil)
-          expect(rating).to_not be_valid
+            rating = build(:rating, rating: nil)
+            expect(rating).to_not be_valid
         end
 
         it "is invalid without a review" do
@@ -26,8 +26,5 @@ RSpec.describe Rating, :type => :model do
             rating = build(:rating, date: nil)
             expect(rating).to_not be_valid
         end
-
     end
-
-
 end

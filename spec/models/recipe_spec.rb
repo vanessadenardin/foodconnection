@@ -2,19 +2,24 @@ require "rails_helper"
 
 RSpec.describe Recipe, :type => :model do
 
-    # it "has a valid factory" do
-    #     recipe = build(:recipe)
-    #     expect(recipe).to be_valid
-    # end
+    it "has a valid factory" do
+        recipe = build(:recipe)
+        expect(recipe).to be_valid
+    end
 
     context "validations" do
         before(:each) do
-          @recipe = build(:recipe)
+            @recipe = build(:recipe)
         end
     
+        it "is invalid without a user id" do
+            recipe = build(:recipe, user_id: nil)
+            expect(recipe).to_not be_valid
+        end
+
         it "is invalid without a recipe name" do
-          recipe = build(:recipe, recipe_name: nil)
-          expect(recipe).to_not be_valid
+            recipe = build(:recipe, recipe_name: nil)
+            expect(recipe).to_not be_valid
         end
 
         it "is invalid without a recipe name" do
@@ -51,7 +56,6 @@ RSpec.describe Recipe, :type => :model do
             recipe = build(:recipe, meal_type: nil)
             expect(recipe).to_not be_valid
         end
-
 
     end
 
