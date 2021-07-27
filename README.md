@@ -95,8 +95,6 @@ jwt_secret_key: <add value>
 
 - We have included Cyrpress screen shots of tests run below.
 
-***CYPRESS TESTS LINK TO GOOGLE DOCS ***
-
 To use the site in production mode, as opposed to with the deployed link, you will need to run rails s in the api folder, and then run yarn start in the client folder in the command line. This will then open up the local host 8080 front end of the project.  To view the back end in the browser go to localhost:3000.
 
 Enjoy!
@@ -246,7 +244,7 @@ To run cypress, both `rails s` and `yarn start` need to be running on terminals 
 
 [GOOGLE DOCS LINK - SCREEN RECORDING TEST](https://drive.google.com/file/d/19DMP-1RKS_Sek6ZpAow6yw6dRqL2f_HR/view?usp=sharing)
 
-<!-- [GOOGLE DOCS LINK - SCREEN RECORDING TEST](https://docs.google.com/spreadsheets/d/1aiJIk7xkHHAOo1lNhM1I1_1bkyNkH71swNVHkw3LBeA/edit?usp=sharing) -->
+[GOOGLE DOCS LINK - SCREEN RECORDING TEST](https://drive.google.com/file/d/1zU05dsy_c121j_zEcHV00bbV4PorRLQL/view?usp=sharing)
 
 ---
 # WEBSITE PAGES
