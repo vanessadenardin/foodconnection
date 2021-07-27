@@ -1,6 +1,6 @@
 # THE FOOD CONNECTION <!-- omit in toc --> 
 
-<img src="docs/FC Logo.JPG" alt="food connection logo" width="600"><br>
+<img src="public/FC Logo.JPG" alt="food connection logo" width="600"><br>
 
 ## T3A2 - PART B (and A) <!-- omit in toc --> 
 
@@ -12,6 +12,8 @@
 
 TABLE OF CONTENTS
 - [INSTALLING THE APP](#installing-the-app)
+- [TESTS](#tests)
+- [WEBSITE PAGES](#website-pages)
 - [PART A DOCUMENTATION](#part-a-documentation)
 - [PURPOSE](#purpose)
 - [FUNCTIONALITY](#functionality)
@@ -25,6 +27,8 @@ TABLE OF CONTENTS
 - [WIRE FRAMES](#wire-frames)
 - [PLANNING OVERVIEW](#planning-overview)
 - [PROJECT MANAGEMENT SCREENSHOTS AND DIARY](#project-management-screenshots-and-diary)
+
+
 
 ## **FOOD CONNECTION DEPLOYED SITE**
 
@@ -48,12 +52,6 @@ https://github.com/The-Food-Connection/foodconnection-client
 
 ---
 
-Link to Deployed Site
-
-Link to Trello Board
-
-Link to Google Docs Prototype File
-
 # INSTALLING THE APP
 
 ### Dependencies <!-- omit in toc --> 
@@ -64,27 +62,27 @@ Link to Google Docs Prototype File
 * <a href="https://nodejs.org/en/">Node</a>
 * <a href="https://www.postgresql.org/">Postgresql</a>
 
-### How to Install <!-- omit in toc --> 
+### **How to Install** <!-- omit in toc --> 
 
-Clone Both API and CLIENT Repositories to your local machine. (Visit each page, select the cloning option top right, and copy the link given.  Open Terminal on your local machine. Create a directory called foodconnection and cd into it, then run **'git clone -clone line-'** for each of the clone lines)
+- Clone Both API and CLIENT Repositories to your local machine. (Visit each page, select the cloning option top right, and copy the link given.  Open Terminal on your local machine. Create a directory called foodconnection and cd into it, then run **'git clone -clone line-'** for each of the clone lines)
 
-Once the clone has run, **ls into the folder** it creates for both api, and client.
+- Once the clone has run, **ls into the folder** it creates for both api, and client.
 
-Run **yarn install** for the **client side**, this will install all necessary packages.
+- Run **yarn install** for the **client side**, this will install all necessary packages.
 
-Run **bundle install** for the **api side**, this will install all necessary gems.
+- Run **bundle install** for the **api side**, this will install all necessary gems.
 
-Follow this in the api side by running rails db:create, followed by rails db:migrate, followed by rails db:seed, this will create the test users and recipes/ratings including the dietary categories. 
+- Follow this in the api side by running rails db:create, followed by rails db:migrate, followed by rails db:seed, this will create the test users and recipes/ratings including the dietary categories. 
 
-### How to Run Tests <!-- omit in toc --> 
+### **How to Run Tests** <!-- omit in toc --> 
 
-To be able to run the **RSpec** test in the api, in the folder you ran bundle install in, run the command line code '**rspec -fd'**. This will run the tests that are set up for the api, and will show the successful tests and their purpose.
+- To be able to run the **RSpec** test in the api, in the folder you ran bundle install in, run the command line code '**rspec -fd'**. This will run the tests that are set up for the api, and will show the successful tests and their purpose.
 
-We have included Cyrpress screen shots of tests run below.
+- We have included Cyrpress screen shots of tests run below.
 
-CYPRESS TESTS LINK TO GOOGLE DOCS 
+***CYPRESS TESTS LINK TO GOOGLE DOCS ***
 
-To use the site in production mode, as opposed to with the deployed link, you will need to run rails s in the api folder, and the run yarn start in the client folder in the command line. This will then open up the local host 8080 front end of the project.  To view the back end in the browser go to localhost:3000.
+To use the site in production mode, as opposed to with the deployed link, you will need to run rails s in the api folder, and then run yarn start in the client folder in the command line. This will then open up the local host 8080 front end of the project.  To view the back end in the browser go to localhost:3000.
 
 Enjoy!
 
@@ -92,10 +90,175 @@ Enjoy!
 
 Navigate to the login page (which will load when you click the above deployed link).  To log in as user the username is testaccount, with a password of 123456.  This will allow you to view the page as a standard user.
 
-**USING THE SITE AS A CUSTOMER**
+**USING THE SITE AS A ADMIN**
 
 Navigate to the login page again, and log in with the username testaccount3, password testadmin.
 Admin will enable the Admin dashboard, where you can view all users, recipes, and ratings on the site, with the option to remove any offensive ratings, and to deactivate user accounts if necessary. 
+
+**API DEPENDENCIES**
+
+    DEPENDENCIES
+      aws-sdk-s3 (~> 1.96)
+      bcrypt (~> 3.1.7)
+      bootsnap (>= 1.4.4)
+      byebug
+      excon (~> 0.85.0)
+      factory_bot_rails
+      jwt (~> 2.2)
+      listen (~> 3.3)
+      pg (~> 1.1)
+      puma (~> 5.0)
+      rack-cors (~> 1.1)
+      rails (~> 6.1.4)
+      rails-controller-testing
+      rspec-rails (~> 5.0.0)
+      spring
+      tzinfo-data
+
+**CLIENT SIDE DEPENDENCIES**
+
+    "dependencies": 
+      "@hookform/resolvers": "^2.6.1",
+      "@material-ui/core": "^4.12.2",
+      "@material-ui/icons": "^4.11.2",
+      "@material-ui/lab": "^4.0.0-alpha.60",
+      "@testing-library/jest-dom": "^5.11.4",
+      "@testing-library/react": "^11.1.0",
+      "@testing-library/user-event": "^12.1.10",
+      "bootstrap": "^5.0.2",
+      "material-ui": "^0.20.2",
+      "mdb-react-ui-kit": "^1.1.0",
+      "mdbootstrap": "^4.19.2",
+      "mdbreact": "^5.1.0",
+      "react": "^17.0.2",
+      "react-bootstrap": "^1.6.1",
+      "react-dom": "^17.0.2",
+      "react-hook-form": "^7.11.1",
+      "react-icons": "^4.2.0",
+      "react-paginate": "^7.1.3",
+      "react-router-dom": "^5.2.0",
+      "react-scripts": "4.0.3",
+      "web-vitals": "^1.0.1",
+      "yup": "^0.32.9"
+
+    "devDependencies": 
+      "cypress": "^8.0.0",
+      "start-server-and-test": "^1.13.0"
+    
+---
+# TESTS
+
+## RSPEC
+
+```ruby
+Finished in 0.37687 seconds (files took 1.42 seconds to load)
+26 examples, 0 failures
+
+suziiiiiq@ubuntu:~/Desktop/FOODCONNECTION/foodconnection-api$ rspec -fd
+
+RatingsController
+  GET index
+    has a 200 status code
+
+RecipesController
+  GET index
+    has a 200 status code
+
+UsersController
+  GET index
+    has a 200 status code
+
+Rating
+  has a valid factory
+  validations
+    is invalid without a rating score
+    is invalid without a review
+    is invalid without a date
+
+Recipe
+  validations
+    is invalid without a recipe name
+    is invalid without a recipe name
+    is invalid without recipe instructions
+    is invalid without a cooking time
+    is invalid without serves
+    is invalid without a skill level
+    is invalid without a cuisine
+    is invalid without a meal type
+
+User
+  has a valid factory
+  validations
+    is invalid without a username
+    is invalid without an email
+    is invalid without a password
+    is invalid without a password confirmation
+    is invalid without an @ symbol
+    is invalid without a .com on the email address
+
+Ratings
+  GET /ratings
+    should respond with 200 ok
+    should respond with json
+
+Recipes
+  GET /recipes
+    should respond with 200 ok
+    should respond with json
+
+Finished in 0.40113 seconds (files took 1.04 seconds to load)
+26 examples, 0 failures
+```
+
+<img src="docs/rspec.png" alt="rspec results" width="1000"><br>
+
+<img src="docs/rspec-stats.png" alt="rspec stats" width="1000"><br>
+
+
+## CYPRESS
+
+To run cypress, both `rails s` and `yarn start` need to be running on terminals for then tests can run successfully.
+
+<img src="docs/cypress1.png" alt="cypress results" width="1000"><br>
+
+<img src="docs/cypress2.png" alt="cypress results" width="1000"><br>
+
+<img src="docs/cypress3.png" alt="cypress results" width="1000"><br>
+
+## MANUAL TESTING
+
+[GOOGLE DOCS LINK - MANUAL TESTING](https://docs.google.com/spreadsheets/d/1aiJIk7xkHHAOo1lNhM1I1_1bkyNkH71swNVHkw3LBeA/edit?usp=sharing)
+
+[GOOGLE DOCS LINK - SCREEN RECORDING TEST](https://drive.google.com/file/d/19DMP-1RKS_Sek6ZpAow6yw6dRqL2f_HR/view?usp=sharing)
+
+<!-- [GOOGLE DOCS LINK - SCREEN RECORDING TEST](https://docs.google.com/spreadsheets/d/1aiJIk7xkHHAOo1lNhM1I1_1bkyNkH71swNVHkw3LBeA/edit?usp=sharing) -->
+
+---
+# WEBSITE PAGES
+
+<img src="docs/sign-up-page.png" alt="Sing up page" width="1000"><br>
+
+<img src="docs/login.png" alt="Login page" width="1000"><br>
+
+<img src="docs/user-profile.png" alt="Urser profile" width="1000"><br>
+
+<img src="docs/my-recipes.png" alt="My recipes page" width="1000"><br>
+
+<img src="docs/all-recipes-page.png" alt="All recipes page" width="1000"><br>
+
+<img src="docs/add-recipe-page.png" alt="Add recipe" width="1000"><br>
+
+<img src="docs/edit-recipe.png" alt="Edit recipe" width="1000"><br>
+
+<img src="docs/rating-page.png" alt="Rating page" width="1000"><br>
+
+<img src="docs/recipe-page.png" alt="Single recipe page" width="1000"><br>
+
+<img src="docs/admin-page.png" alt="Admin page part 1" width="1000"><br>
+
+<img src="docs/admin-page2.png" alt="Admin page part 2" width="1000"><br>
+
+---
 
 # PART A DOCUMENTATION
 
@@ -229,13 +392,11 @@ We want it to be for EVERYONE who loves food.
 
 # ERD
 
-WE UPDATED OUR ERD DURING THE BUILD PROCESS - we realised we were missing some relationships for our recipe table, and we needed to change our ingredients set up in regards to what we needed and what we thought we needed. 
-
-<img src="docs/erd-updated.JPG" alt="food connection erd" width="1200"><br>
+WE UPDATED OUR ERD DURING THE BUILD PROCESS
 
 The `user` table is related to `recipe` and `rating` tables, as a user with an account on the website can post recipes as well as ratings and comments on another user's recipe.
 
-The `recipe` table is related to `rating`, `user`, `dietary_category` and `ingredient` tables. As dietary_categories and ingredients support a many-to-many relationship with recipes, two intermediate tables have been added to connect them, ie `recipe_dietary` and `recipe_ingredient` act to intermediate the relationship making it easier to handle database content.
+The `recipe` table is related to `rating`, `user`, `dietary_category` and `recipe_ingredient` tables. As dietary_categories support a many-to-many relationship with recipes, a intermediate table have been added to connect them, ie `recipe_dietary` act to intermediate the relationship making it easier to handle database content.
 
 The Food Connection in terms of the model's relationships and associations:
 
@@ -247,36 +408,43 @@ A user `has_many recipes and ratings` and `has_secure_password`
     has_secure_password
 ```
 
-A recipe `has_many ratings`, while rating `belongs_to user and recipe` and is optional
+A recipe `has_many ratings, recipe_ingredients and dietary_categories`, while rating `belongs_to user` and `has_one_attached image`.
 
 ```ruby
-  belongs_to :user, optional: true
-  belongs_to :recipe, optional: true
+  belongs_to :user
+
+  has_many :recipe_ingredients, dependent: :destroy
+
+  has_many :recipe_dietaries, dependent: :destroy
+  has_many :dietary_categories, through: :recipe_dietaries
+
+  has_many :ratings, dependent: :destroy
+  has_one_attached :image, dependent: :destroy
 ```
 
 A recipe `has_many dietary_category` through `recipe_dietary`
 
-A recipe `has_many ingredients` through `recipe_ingredient`
-
 A recipe `has_one_attached image`
 
 ```ruby
-  belongs_to :user
-  has_many :ingredients, through: :recipe_ingredients
-  has_many :dietary_categories, through: :recipe_dietaries
-  has_many :ratings
-  has_one_attached :image
+  belongs_to :recipe
+  belongs_to :dietary_category
 ```
 
-The models `recipe_dietary` and `recipe_ingredient` are collecting information about the dietary_category and ingredient tables to link to the recipe table.
+The model `recipe_dietary` is collecting information about the dietary_category table to link to the recipe table.
 
 ```ruby
-    has_many :recipe_ingredients
+  belongs_to :recipe
 ```
 
-```ruby
-    has_many :recipe_dietary
-```
+The model `recipe_ingredient` is to link to the recipe table and handle ingredients from a CSV file.
+
+
+To add ingredients to the recipe page, we used an ingredients list saved in a CSV file from the Internet, so the ingredient table was not needed. Instead, the row name was added to the table recipe_ingredients which was serving the application with ingredients.
+
+It was also decided to implement an option to disable the user by the administrator, to serve as an option to delete it in case of need without completely losing all the data entered by the user. For this, the disabled line was also added to the users table, giving the admin the possibility to block the user's access to the site without losing all the data added by him.
+
+<img src="docs/ERD-foodconnection.png" alt="food connection erd" width="1200"><br>
 
 ---
 
