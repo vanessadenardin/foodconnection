@@ -29,3 +29,8 @@
 .DS_Store
 
 /config/credentials/production.key
+node_modules
+terraform.tfstate*
+.terraform
+*.key
+*.log

@@ -1,0 +1,17 @@
+.myrecipescard card-img-top {
+    width: 100%;
+    object-fit: cover;
+}
+
+.myrecipescardbody {
+    height: auto;
+    background-color: #dde1fc;
+}
+
+.list-group-flush {
+    background-color: #dde1fc;
+}
+
+.listitem {
+    background-color: #dde1fc !important;
+}
