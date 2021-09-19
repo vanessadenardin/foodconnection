@@ -127,10 +127,10 @@ Assuming you are authenticated with your AWS account:
 
 ## References
 
-- [Ansible]('https://docs.ansible.com/ansible/latest/index.html')
+- [Ansible](https://docs.ansible.com/ansible/latest/index.html)
 
-- [AWS]('https://aws.amazon.com/')
+- [AWS](https://aws.amazon.com/)
 
-- [Terraform]('https://registry.terraform.io/')
+- [Terraform](https://registry.terraform.io/)
 
-- [The Food Connection]('https://the-food-connection.netlify.app/')
+- [The Food Connection](https://the-food-connection.netlify.app/)
