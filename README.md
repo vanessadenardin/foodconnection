@@ -129,7 +129,6 @@ Assuming you are authenticated with your AWS account:
 - Add another stack for the frontend: bucket for static hosting or another ec2 instance with apache
 - Create a pipeline to automatically deploy stacks
     - pipeline should be able to get values across from IaC to configuration management without manual steps
-- Lockdown backend API to be accessible only by the frontend on port 3000
 
 ---
 
