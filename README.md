@@ -1,4 +1,4 @@
-# Terraform + Ansible for application deployment on AWS
+# Full stack Application with Ruby on Rails API backend and React Frontend
 
 **IMPORTANT:** This is a Work in Progress project, it doesn't have enough instructions yet to replicate this deployment to new environments.
 
@@ -69,6 +69,8 @@ I found it a good opportunity to use the application already developed to study 
 ---
 
 ## 6. Application Architecure in AWS
+
+As this is a WIP, only the left half of below architecture is implemented so far. Intention is to have the full stack being deployed and configured via code once the project is completed.
 
 <img src="application-aws.png" alt="application architecture AWS" width="1200">
 
