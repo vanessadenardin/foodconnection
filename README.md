@@ -24,7 +24,7 @@ TABLE OF CONTENTS:
 
     - [Running Ansible](#running-ansible)
 
-8. [Future recommendations](#8-future-recommendations)
+8. [Roadmap of new features](#8-roadmap-of-new-features)
 
 [References](#references)
 
@@ -108,19 +108,27 @@ Assuming you are authenticated with your AWS account:
   host: <host>
 ```
 
+- You also need to update the Ansible task called `add ruby master key` with the correct encryption key
+
 - From the `infra/ansible` folder, run
 
 `ansible-playbook -i inventory backend-playbook.yml --user ec2-user --key-file /path/to/ssh-key.pem`
 
+### Running Rails server
+
+- Login to the instance
+- From the `backend` folder, run `RAILS_ENV=production rails server`
+- Now you can test the api through `http://<instance-public-ip>:3000`
+
 ---
 
-## 8. Future recommendations
+## 8. Roadmap of new features
 
+- Use more variables to make the code more reusable
 - Create the S3 bucket to host images as part of the backend stack
 - Add another stack for the frontend: bucket for static hosting or another ec2 instance with apache
 - Create a pipeline to automatically deploy stacks
     - pipeline should be able to get values across from IaC to configuration management without manual steps
-- Improve scripts to use more variables rather than hardcoded values
 - Lockdown backend API to be accessible only by the frontend on port 3000
 
 ---

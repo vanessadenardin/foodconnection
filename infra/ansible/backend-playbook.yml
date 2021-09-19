@@ -72,7 +72,7 @@
   - name: copy file
     become: yes 
     copy:
-      src: ~/Desktop/coderacademy/food-connection/foodconnection-api/infra/ansible/database.yml
+      src: database.yml
       dest: /home/ec2-user/foodconnection/backend/config/database.yml
       owner: ec2-user
       group: ec2-user        

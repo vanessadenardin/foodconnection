@@ -18,6 +18,8 @@ resource "aws_rds_cluster" "postgres" {
   master_password         = "random123EXAMPLE"
   vpc_security_group_ids  = [aws_security_group.backend_db.id]
   deletion_protection     = false
+  skip_final_snapshot     = true
+  
   scaling_configuration {
     min_capacity = 2
   }
