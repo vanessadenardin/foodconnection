@@ -1,0 +1,19 @@
+.recipeoftheday {
+    height: auto;
+    /* width: 5px; */
+    /* /* justify-content: center; */
+    align-items: center; 
+    /* text-align: center; */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* .text-center {
+    height: 200px;
+    justify-content: center;
+} */
+
+.cardbody {
+    align-items: center;
+    justify-content: center;
+}

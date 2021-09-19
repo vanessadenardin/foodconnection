@@ -1,0 +1,87 @@
+---
+- hosts: backend
+  tasks:
+  - name: install git and postgres
+    become: yes
+    yum:
+      name: 
+      - git
+      - postgresql-server
+      - postgresql-contrib
+      - postgresql-devel
+      state: latest
+
+  - name: clone backend code
+    git:
+      repo: https://github.com/vanessadenardin/foodconnection.git
+      dest: /home/ec2-user/foodconnection
+      clone: yes
+      force: yes
+      update: yes
+
+  - name: Check if rvm is installed
+    command: command -v rvm >/dev/null 2>&1
+    register: rvm_installed
+    no_log: true
+    ignore_errors: yes
+
+  - name: Download rvm installer
+    get_url:
+      url: https://get.rvm.io
+      dest: /tmp/rvm.sh
+      mode: 'u+rwx'
+    register: download_rvm
+
+  - name: Run the rvm install script
+    become: yes
+    shell: /tmp/rvm.sh
+
+  - name: Add ec2-user to rvm group
+    become: yes
+    ansible.builtin.user:
+      name: ec2-user
+      shell: /bin/bash
+      groups: rvm
+      append: yes
+
+  - name: reset ssh connection to allow user changes to affect 'current login user'
+    meta: reset_connection
+
+  - name: install ruby
+    shell: rvm install ruby-2.7.2
+    when: download_rvm.changed
+
+  - name: set default ruby version
+    shell: bash -l -c "rvm --default use ruby-2.7.2"
+
+  - name: install bundler
+    shell: 
+      cmd: gem install bundler:2.2.17
+      chdir: /home/ec2-user/foodconnection/backend
+
+  - name: run bundle install
+    shell: 
+      cmd: bundle install
+      chdir: /home/ec2-user/foodconnection/backend
+
+  - name: add ruby master key
+    shell: 
+      cmd: echo "<master-key>" > config/master.key
+      chdir: /home/ec2-user/foodconnection/backend
+
+  - name: copy file
+    become: yes 
+    copy:
+      src: ~/Desktop/coderacademy/food-connection/foodconnection-api/infra/ansible/database.yml
+      dest: /home/ec2-user/foodconnection/backend/config/database.yml
+      owner: ec2-user
+      group: ec2-user        
+      mode: 0644
+
+  - name: run rails database create, migrate and seed
+    shell:
+      cmd: |
+        RAILS_ENV=production rails db:create
+        RAILS_ENV=production rails db:migrate
+        RAILS_ENV=production rails db:seed
+      chdir: /home/ec2-user/foodconnection/backend
